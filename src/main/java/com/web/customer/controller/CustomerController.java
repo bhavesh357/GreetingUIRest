@@ -27,4 +27,9 @@ public class CustomerController {
     public Customer modifyCustomer(@RequestBody CustomerDto customerDto,@RequestParam int id){
         return service.modifyCustomer(customerDto,id);
     }
+
+    @DeleteMapping
+    public void deleteCustomer(@RequestParam int id){
+        service.deleteCustomer(id);
+    }
 }

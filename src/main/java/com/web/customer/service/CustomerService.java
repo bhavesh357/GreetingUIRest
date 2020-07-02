@@ -30,4 +30,8 @@ public class CustomerService {
         customer.setLastName(customerDto.getLastName());
         return customerDao.saveCustomer(customer);
     }
+
+    public void deleteCustomer(int id) {
+        customerDao.deleteCustomer(id);
+    }
 }

@@ -8,4 +8,5 @@ public interface CustomerDao {
 
     Customer saveCustomer(Customer customer);
 
+    void deleteCustomer(int id);
 }

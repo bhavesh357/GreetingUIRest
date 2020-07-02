@@ -22,4 +22,9 @@ public class CustomerDaoImpl implements CustomerDao{
         return repository.save(customer);
     }
 
+    @Override
+    public void deleteCustomer(int id) {
+        repository.deleteById(id);
+    }
+
 }
