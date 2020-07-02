@@ -6,6 +6,8 @@ import com.web.customer.model.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CustomerService {
 
@@ -33,5 +35,9 @@ public class CustomerService {
 
     public void deleteCustomer(int id) {
         customerDao.deleteCustomer(id);
+    }
+
+    public List<Customer> getAll() {
+        return customerDao.getAll();
     }
 }

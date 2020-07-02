@@ -6,6 +6,8 @@ import com.web.customer.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/")
 public class CustomerController {
@@ -13,9 +15,14 @@ public class CustomerController {
     @Autowired
     CustomerService service;
 
-    @GetMapping
-    public Customer getCustomer(@RequestParam int id){
+    @GetMapping("/{id}")
+    public Customer getCustomer(@PathVariable int id){
         return service.getCustomer(id);
+    }
+
+    @GetMapping
+    public List<Customer> getCustomer(){
+        return service.getAll();
     }
 
     @PostMapping
@@ -32,4 +39,5 @@ public class CustomerController {
     public void deleteCustomer(@RequestParam int id){
         service.deleteCustomer(id);
     }
+
 }

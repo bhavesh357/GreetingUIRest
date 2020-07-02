@@ -5,6 +5,8 @@ import com.web.customer.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 
 @Component
 public class CustomerDaoImpl implements CustomerDao{
@@ -25,6 +27,11 @@ public class CustomerDaoImpl implements CustomerDao{
     @Override
     public void deleteCustomer(int id) {
         repository.deleteById(id);
+    }
+
+    @Override
+    public List<Customer> getAll() {
+        return repository.findAll();
     }
 
 }
