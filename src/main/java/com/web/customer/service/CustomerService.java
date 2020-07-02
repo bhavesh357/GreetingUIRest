@@ -21,6 +21,13 @@ public class CustomerService {
         Customer customer = new Customer();
         customer.setFirstName(customerDto.getFirstName());
         customer.setLastName(customerDto.getLastName());
-        return customerDao.addCustomer(customer);
+        return customerDao.saveCustomer(customer);
+    }
+
+    public Customer modifyCustomer(CustomerDto customerDto, int id) {
+        Customer customer = customerDao.getCustomerById(id);
+        customer.setFirstName(customerDto.getFirstName());
+        customer.setLastName(customerDto.getLastName());
+        return customerDao.saveCustomer(customer);
     }
 }

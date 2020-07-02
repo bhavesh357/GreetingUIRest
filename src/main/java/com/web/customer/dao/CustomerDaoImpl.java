@@ -18,7 +18,8 @@ public class CustomerDaoImpl implements CustomerDao{
     }
 
     @Override
-    public Customer addCustomer(Customer customer) {
+    public Customer saveCustomer(Customer customer) {
         return repository.save(customer);
     }
+
 }

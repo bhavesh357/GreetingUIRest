@@ -22,4 +22,9 @@ public class CustomerController {
     public Customer addCustomer(@RequestBody CustomerDto customerDto){
         return service.addCustomer(customerDto);
     }
+
+    @PutMapping
+    public Customer modifyCustomer(@RequestBody CustomerDto customerDto,@RequestParam int id){
+        return service.modifyCustomer(customerDto,id);
+    }
 }
