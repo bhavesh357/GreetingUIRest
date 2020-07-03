@@ -2,6 +2,7 @@ package com.web.customer.controller;
 
 import com.web.customer.dto.CustomerDto;
 import com.web.customer.model.Customer;
+import com.web.customer.model.Response;
 import com.web.customer.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,23 +23,23 @@ public class CustomerController {
     CustomerService service;
 
     @GetMapping("/{id}")
-    public Customer getCustomer(@PathVariable int id){
-        return service.getCustomer(id);
+    public Response getCustomer(@PathVariable int id){
+        return new Response(200,"Successful",service.getCustomer(id));
     }
 
     @GetMapping
-    public List<Customer> getCustomer(){
-        return service.getAll();
+    public Response getCustomer(){
+        return new Response(200,"Successful",service.getAll());
     }
 
     @PostMapping
-    public Customer addCustomer(@Valid @RequestBody CustomerDto customerDto){
-        return service.addCustomer(customerDto);
+    public Response addCustomer(@Valid @RequestBody CustomerDto customerDto){
+        return new Response(200,"Successful",service.addCustomer(customerDto));
     }
 
     @PutMapping("/{id}")
-    public Customer modifyCustomer(@Valid @RequestBody CustomerDto customerDto, @PathVariable int id){
-        return service.modifyCustomer(customerDto,id);
+    public Response modifyCustomer(@Valid @RequestBody CustomerDto customerDto, @PathVariable int id){
+        return new Response(200,"Successful",service.modifyCustomer(customerDto,id));
     }
 
     @DeleteMapping("/{id}")
