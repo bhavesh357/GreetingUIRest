@@ -6,6 +6,7 @@ import com.web.customer.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -26,17 +27,17 @@ public class CustomerController {
     }
 
     @PostMapping
-    public Customer addCustomer(@RequestBody CustomerDto customerDto){
+    public Customer addCustomer(@Valid @RequestBody CustomerDto customerDto){
         return service.addCustomer(customerDto);
     }
 
-    @PutMapping
-    public Customer modifyCustomer(@RequestBody CustomerDto customerDto,@RequestParam int id){
+    @PutMapping("/{id}")
+    public Customer modifyCustomer(@Valid @RequestBody CustomerDto customerDto, @PathVariable int id){
         return service.modifyCustomer(customerDto,id);
     }
 
-    @DeleteMapping
-    public void deleteCustomer(@RequestParam int id){
+    @DeleteMapping("/{id}")
+    public void deleteCustomer(@PathVariable int id){
         service.deleteCustomer(id);
     }
 
