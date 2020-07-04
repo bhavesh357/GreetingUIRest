@@ -50,7 +50,7 @@ public class CustomerController {
         return new Response(200,"Successful",service.addCustomer(customerDto));
     }
 
-    @PostMapping
+    @PostMapping("/contact")
     public Response addCustomer(@Valid @RequestBody CustomerDetailsDto customerDetailsDto){
         return new Response(200,"Successful",contactService.addCustomer(customerDetailsDto));
     }

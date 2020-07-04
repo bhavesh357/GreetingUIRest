@@ -9,7 +9,7 @@ import java.util.List;
 public interface CustomerContactDao {
     CustomerContact getCustomerById(int id);
 
-    CustomerContact saveCustomer(Customer customer);
+    CustomerContact saveCustomer(CustomerContact customer);
 
     void deleteCustomer(int id);
 
