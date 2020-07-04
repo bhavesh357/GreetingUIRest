@@ -12,6 +12,14 @@ public class CustomerDetailsDto {
     @Pattern(regexp = "[A-Z][a-z]{2,12}",message = "Enter a Name with Capital Letter and at least 2 more characters")
     private String lastName;
 
+    @NotNull(message = "Enter a proper address with length at least 10 character")
+    @Pattern(regexp = "[0-9a-zA-Z,(-) ]{10,50}",message = "Enter a proper address with length at least 10 character")
+    private String address;
+
+    @NotNull(message = "Enter a proper number with length of 10 character")
+    @Pattern(regexp = "[0-9]{10}",message = "Enter a proper number with length of 10 character")
+    private String number;
+
     public String getFirstName() {
         return firstName;
     }
@@ -44,12 +52,6 @@ public class CustomerDetailsDto {
         this.number = number;
     }
 
-    @NotNull(message = "Enter a proper address with length at least 10 character")
-    @Pattern(regexp = "[0-9a-zA-Z]{10,50}",message = "Enter a proper address with length at least 10 character")
-    private String address;
 
-    @NotNull(message = "Enter a proper number with length of 10 character")
-    @Pattern(regexp = "[0-9]{10}",message = "Enter a proper number with length of 10 character")
-    private String number;
 
 }

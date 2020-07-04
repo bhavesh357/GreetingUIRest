@@ -19,6 +19,8 @@ public class CustomerContactService {
 
     @Autowired
     CustomerContactDAOImpl customerContactDao;
+
+    @Autowired
     CustomerDaoImpl customerDao;
 
     public CustomerDetails getCustomer(int id) {

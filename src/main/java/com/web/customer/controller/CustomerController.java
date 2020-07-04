@@ -23,6 +23,8 @@ public class CustomerController {
 
     @Autowired
     CustomerService service;
+
+    @Autowired
     CustomerContactService contactService;
 
     @GetMapping("/{id}")
@@ -77,4 +79,5 @@ public class CustomerController {
         });
         return errors;
     }
+
 }
