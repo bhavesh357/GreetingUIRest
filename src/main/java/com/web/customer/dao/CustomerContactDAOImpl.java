@@ -27,7 +27,7 @@ public class CustomerContactDAOImpl implements CustomerContactDao{
 
     @Override
     public void deleteCustomer(int id) {
-
+        repo.deleteById(id);
     }
 
     @Override

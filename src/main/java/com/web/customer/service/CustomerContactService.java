@@ -48,6 +48,8 @@ public class CustomerContactService {
         customerDetails.setLastName(customer.getLastName());
         customerDetails.setAddress(customerContact.getAddress());
         customerDetails.setNumber(customerContact.getNumber());
+        customerDetails.setModifiedTime(customer.getModifiedTime());
+        customerDetails.setRegisteredTime(customer.getRegisteredTime());
         return customerDetails;
     }
 
