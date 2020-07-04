@@ -3,6 +3,7 @@ package com.web.customer.service;
 import com.web.customer.dao.CustomerDaoImpl;
 import com.web.customer.dto.CustomerDto;
 import com.web.customer.model.Customer;
+import com.web.customer.util.CustomerTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +24,9 @@ public class CustomerService {
         Customer customer = new Customer();
         customer.setFirstName(customerDto.getFirstName());
         customer.setLastName(customerDto.getLastName());
+        String timeStamp = CustomerTime.getTimeStamp();
+        customer.setRegisteredTime(timeStamp);
+        customer.setModifiedTime(timeStamp);
         return customerDao.saveCustomer(customer);
     }
 
@@ -30,6 +34,7 @@ public class CustomerService {
         Customer customer = customerDao.getCustomerById(id);
         customer.setFirstName(customerDto.getFirstName());
         customer.setLastName(customerDto.getLastName());
+        customer.setModifiedTime(CustomerTime.getTimeStamp());
         return customerDao.saveCustomer(customer);
     }
 

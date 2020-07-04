@@ -14,6 +14,26 @@ public class Customer {
 
     private String lastName;
 
+    private String registeredTime;
+
+    private String modifiedTime;
+
+    public String getRegisteredTime() {
+        return registeredTime;
+    }
+
+    public void setRegisteredTime(String registeredTime) {
+        this.registeredTime = registeredTime;
+    }
+
+    public String getModifiedTime() {
+        return modifiedTime;
+    }
+
+    public void setModifiedTime(String modifiedTime) {
+        this.modifiedTime = modifiedTime;
+    }
+
     public int getId() {
         return id;
     }
