@@ -66,4 +66,19 @@ public class CustomerContactService {
         customerContactDao.saveCustomer(customerContact);
         return getCustomer(customer.getId());
     }
+
+
+    public CustomerDetails modifyCustomer(CustomerDetailsDto customerDetailsDto, int id) {
+        Customer customer = customerDao.getCustomerById(id);
+        customer.setFirstName(customerDetailsDto.getFirstName());
+        customer.setLastName(customerDetailsDto.getLastName());
+        customer.setModifiedTime(CustomerTime.getTimeStamp());
+        CustomerContact customerContact = customerContactDao.getCustomerById(id);
+        customerContact.setNumber(customerDetailsDto.getNumber());
+        customerContact.setAddress(customerDetailsDto.getAddress());
+        customerDao.saveCustomer(customer);
+        customerContactDao.saveCustomer(customerContact);
+        return merge(customer,customerContact);
+    }
+
 }

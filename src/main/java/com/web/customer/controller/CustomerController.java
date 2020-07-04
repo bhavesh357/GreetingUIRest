@@ -62,10 +62,16 @@ public class CustomerController {
         return new Response(200,"Successful",service.modifyCustomer(customerDto,id));
     }
 
+    @PutMapping("/contact/{id}")
+    public Response modifyCustomerContact(@Valid @RequestBody CustomerDetailsDto customerDetailsDto, @PathVariable int id){
+        return new Response(200,"Successful",contactService.modifyCustomer(customerDetailsDto,id));
+    }
+
     @DeleteMapping("/{id}")
     public void deleteCustomer(@PathVariable int id){
         service.deleteCustomer(id);
     }
+
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
