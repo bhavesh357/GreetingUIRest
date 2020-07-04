@@ -30,13 +30,18 @@ public class CustomerController {
     }
 
     @GetMapping("/contact/{id}")
-    public Response getCustomerContact(@PathVariable int id){
+    public Response getCustomerDetails(@PathVariable int id){
         return new Response(200,"Successful",contactService.getCustomer(id));
     }
 
     @GetMapping
     public Response getCustomer(){
         return new Response(200,"Successful",service.getAll());
+    }
+
+    @GetMapping
+    public Response getCustomerDetails(){
+        return new Response(200,"Successful",contactService.getAll());
     }
 
     @PostMapping

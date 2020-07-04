@@ -9,9 +9,9 @@ import java.util.List;
 public interface CustomerContactDao {
     CustomerContact getCustomerById(int id);
 
-    CustomerDetails saveCustomer(Customer customer);
+    CustomerContact saveCustomer(Customer customer);
 
     void deleteCustomer(int id);
 
-    List<CustomerDetails> getAll();
+    List<CustomerContact> getAll();
 }

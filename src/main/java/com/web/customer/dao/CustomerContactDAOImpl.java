@@ -21,7 +21,7 @@ public class CustomerContactDAOImpl implements CustomerContactDao{
     }
 
     @Override
-    public CustomerDetails saveCustomer(Customer customer) {
+    public CustomerContact saveCustomer(Customer customer) {
         return null;
     }
 
@@ -31,7 +31,7 @@ public class CustomerContactDAOImpl implements CustomerContactDao{
     }
 
     @Override
-    public List<CustomerDetails> getAll() {
-        return null;
+    public List<CustomerContact> getAll() {
+        return repo.findAll();
     }
 }
