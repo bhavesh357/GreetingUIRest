@@ -3,9 +3,11 @@ package com.web.customer.service;
 
 import com.web.customer.dao.CustomerContactDAOImpl;
 import com.web.customer.dao.CustomerDaoImpl;
+import com.web.customer.dto.CustomerDetailsDto;
 import com.web.customer.model.Customer;
 import com.web.customer.model.CustomerContact;
 import com.web.customer.model.CustomerDetails;
+import com.web.customer.util.CustomerTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,5 +47,21 @@ public class CustomerContactService {
         customerDetails.setAddress(customerContact.getAddress());
         customerDetails.setNumber(customerContact.getNumber());
         return customerDetails;
+    }
+
+    public CustomerDetails addCustomer(CustomerDetailsDto customerDetailsDto) {
+        Customer customer = new Customer();
+        customer.setFirstName(customerDetailsDto.getFirstName());
+        customer.setLastName(customerDetailsDto.getLastName());
+        String timeStamp = CustomerTime.getTimeStamp();
+        customer.setRegisteredTime(timeStamp);
+        customer.setModifiedTime(timeStamp);
+        customer = customerDao.saveCustomer(customer);
+        CustomerContact customerContact = new CustomerContact();
+        customerContact.setId(customer.getId());
+        customerContact.setAddress(customerDetailsDto.getAddress());
+        customerContact.setNumber(customerDetailsDto.getNumber());
+        customerContactDao.saveCustomer(customerContact);
+        return getCustomer(customer.getId());
     }
 }

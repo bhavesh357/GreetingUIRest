@@ -21,8 +21,8 @@ public class CustomerContactDAOImpl implements CustomerContactDao{
     }
 
     @Override
-    public CustomerContact saveCustomer(Customer customer) {
-        return null;
+    public CustomerContact saveCustomer(CustomerContact customer) {
+        return repo.save(customer);
     }
 
     @Override

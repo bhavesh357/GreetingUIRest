@@ -1,5 +1,6 @@
 package com.web.customer.controller;
 
+import com.web.customer.dto.CustomerDetailsDto;
 import com.web.customer.dto.CustomerDto;
 import com.web.customer.model.Customer;
 import com.web.customer.model.Response;
@@ -39,7 +40,7 @@ public class CustomerController {
         return new Response(200,"Successful",service.getAll());
     }
 
-    @GetMapping
+    @GetMapping("/contact")
     public Response getCustomerDetails(){
         return new Response(200,"Successful",contactService.getAll());
     }
@@ -47,6 +48,11 @@ public class CustomerController {
     @PostMapping
     public Response addCustomer(@Valid @RequestBody CustomerDto customerDto){
         return new Response(200,"Successful",service.addCustomer(customerDto));
+    }
+
+    @PostMapping
+    public Response addCustomer(@Valid @RequestBody CustomerDetailsDto customerDetailsDto){
+        return new Response(200,"Successful",contactService.addCustomer(customerDetailsDto));
     }
 
     @PutMapping("/{id}")
