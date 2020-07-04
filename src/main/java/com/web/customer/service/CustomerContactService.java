@@ -11,6 +11,7 @@ import com.web.customer.util.CustomerTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,12 +24,14 @@ public class CustomerContactService {
     @Autowired
     CustomerDaoImpl customerDao;
 
+    @Transactional
     public CustomerDetails getCustomer(int id) {
         Customer customer = this.customerDao.getCustomerById(id);
         CustomerContact customerContact = customerContactDao.getCustomerById(id);
         return merge(customer,customerContact);
     }
 
+    @Transactional
     public List<CustomerDetails> getAll() {
         List<CustomerDetails> customerDetails = new ArrayList<>();
         List<Customer> customers = customerDao.getAll();
@@ -53,6 +56,7 @@ public class CustomerContactService {
         return customerDetails;
     }
 
+    @Transactional
     public CustomerDetails addCustomer(CustomerDetailsDto customerDetailsDto) {
         Customer customer = new Customer();
         customer.setFirstName(customerDetailsDto.getFirstName());
@@ -69,7 +73,7 @@ public class CustomerContactService {
         return getCustomer(customer.getId());
     }
 
-
+    @Transactional
     public CustomerDetails modifyCustomer(CustomerDetailsDto customerDetailsDto, int id) {
         Customer customer = customerDao.getCustomerById(id);
         customer.setFirstName(customerDetailsDto.getFirstName());
@@ -82,7 +86,6 @@ public class CustomerContactService {
         customerContactDao.saveCustomer(customerContact);
         return merge(customer,customerContact);
     }
-
 
     public void deleteCustomer(int id) {
         customerDao.deleteCustomer(id);
