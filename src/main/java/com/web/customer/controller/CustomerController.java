@@ -2,6 +2,7 @@ package com.web.customer.controller;
 
 import com.web.customer.dto.CustomerDetailsDto;
 import com.web.customer.dto.CustomerDto;
+import com.web.customer.exception.CustomerException;
 import com.web.customer.model.Customer;
 import com.web.customer.model.Response;
 import com.web.customer.service.CustomerContactService;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -88,6 +88,11 @@ public class CustomerController {
             errors.put(fieldName, errorMessage);
         });
         return errors;
+    }
+
+    @ExceptionHandler(CustomerException.class)
+    public String handleCustomerException(CustomerException ex){
+        return ex.getMessage();
     }
 
 }
