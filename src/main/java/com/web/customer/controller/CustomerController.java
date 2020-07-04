@@ -3,6 +3,7 @@ package com.web.customer.controller;
 import com.web.customer.dto.CustomerDto;
 import com.web.customer.model.Customer;
 import com.web.customer.model.Response;
+import com.web.customer.service.CustomerContactService;
 import com.web.customer.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,10 +22,16 @@ public class CustomerController {
 
     @Autowired
     CustomerService service;
+    CustomerContactService contactService;
 
     @GetMapping("/{id}")
     public Response getCustomer(@PathVariable int id){
         return new Response(200,"Successful",service.getCustomer(id));
+    }
+
+    @GetMapping("/contact/{id}")
+    public Response getCustomerContact(@PathVariable int id){
+        return new Response(200,"Successful",contactService.getCustomer(id));
     }
 
     @GetMapping
