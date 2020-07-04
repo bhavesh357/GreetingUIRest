@@ -1,8 +1,11 @@
 package com.web.customer.controller;
 
+import com.web.customer.dto.CustomerDetailsDto;
 import com.web.customer.dto.CustomerDto;
+import com.web.customer.exception.CustomerException;
 import com.web.customer.model.Customer;
 import com.web.customer.model.Response;
+import com.web.customer.service.CustomerContactService;
 import com.web.customer.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -22,9 +24,17 @@ public class CustomerController {
     @Autowired
     CustomerService service;
 
+    @Autowired
+    CustomerContactService contactService;
+
     @GetMapping("/{id}")
     public Response getCustomer(@PathVariable int id){
         return new Response(200,"Successful",service.getCustomer(id));
+    }
+
+    @GetMapping("/contact/{id}")
+    public Response getCustomerDetails(@PathVariable int id){
+        return new Response(200,"Successful",contactService.getCustomer(id));
     }
 
     @GetMapping
@@ -32,9 +42,19 @@ public class CustomerController {
         return new Response(200,"Successful",service.getAll());
     }
 
+    @GetMapping("/contact")
+    public Response getCustomerDetails(){
+        return new Response(200,"Successful",contactService.getAll());
+    }
+
     @PostMapping
     public Response addCustomer(@Valid @RequestBody CustomerDto customerDto){
         return new Response(200,"Successful",service.addCustomer(customerDto));
+    }
+
+    @PostMapping("/contact")
+    public Response addCustomer(@Valid @RequestBody CustomerDetailsDto customerDetailsDto){
+        return new Response(200,"Successful",contactService.addCustomer(customerDetailsDto));
     }
 
     @PutMapping("/{id}")
@@ -42,9 +62,19 @@ public class CustomerController {
         return new Response(200,"Successful",service.modifyCustomer(customerDto,id));
     }
 
+    @PutMapping("/contact/{id}")
+    public Response modifyCustomerContact(@Valid @RequestBody CustomerDetailsDto customerDetailsDto, @PathVariable int id){
+        return new Response(200,"Successful",contactService.modifyCustomer(customerDetailsDto,id));
+    }
+
     @DeleteMapping("/{id}")
     public void deleteCustomer(@PathVariable int id){
         service.deleteCustomer(id);
+    }
+
+    @DeleteMapping("/contact/{id}")
+    public void deleteCustomerContact(@PathVariable int id){
+        contactService.deleteCustomer(id);
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -59,4 +89,10 @@ public class CustomerController {
         });
         return errors;
     }
+
+    @ExceptionHandler(CustomerException.class)
+    public String handleCustomerException(CustomerException ex){
+        return ex.getMessage();
+    }
+
 }
