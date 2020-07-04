@@ -81,4 +81,9 @@ public class CustomerContactService {
         return merge(customer,customerContact);
     }
 
+
+    public void deleteCustomer(int id) {
+        customerDao.deleteCustomer(id);
+        customerContactDao.deleteCustomer(id);
+    }
 }

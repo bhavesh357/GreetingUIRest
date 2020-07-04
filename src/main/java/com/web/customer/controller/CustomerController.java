@@ -72,6 +72,10 @@ public class CustomerController {
         service.deleteCustomer(id);
     }
 
+    @DeleteMapping("/contact/{id}")
+    public void deleteCustomerContact(@PathVariable int id){
+        contactService.deleteCustomer(id);
+    }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
